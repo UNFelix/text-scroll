@@ -6,7 +6,7 @@
   overflow: hidden;
   position: relative;
 }
-p {
+pre {
   width: 100%;
   height: 100%;
   overflow-y: scroll;
@@ -18,6 +18,7 @@ p {
   top: 0;
   height: 100%;
   width: 20px;
+  cursor: pointer;
 }
 .scroll-thumb {
   width: 14px;
@@ -27,6 +28,7 @@ p {
   position: absolute;
   top: 15px;
   right: 3px;
+  transition: all 0.1s;
 }
 .scroll-track {
   position: absolute;

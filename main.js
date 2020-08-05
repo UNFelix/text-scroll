@@ -1,4 +1,4 @@
-let programmatic = false;
+// let programmatic = false;
 
 thumb.onmousedown = function () {
   text.parentElement.style.userSelect = "none";
@@ -10,10 +10,10 @@ thumb.onmousedown = function () {
     offset = Math.min(offset, maxOffset);
     const multiplier = offset / maxOffset;
     thumb.style.transform = "translateY(" + offset + "px)";
-    programmatic = true;
+    // programmatic = true;
     text.scrollTo(0, (text.scrollHeight - text.offsetHeight) * multiplier);
     setTimeout(() => {
-      programmatic = false;
+      // programmatic = false;
       text.parentElement.style.userSelect = null;
     }, 50);
   };
@@ -22,12 +22,32 @@ thumb.onmousedown = function () {
     document.body.onmousemove = null;
   };
 };
-
+/* 
 text.onscroll = function (evt) {
-  if (programmatic) return;
+  // if (programmatic) return;
   const multiplier = text.scrollTop / (text.scrollHeight - text.offsetHeight);
   const maxOffset = track.scrollHeight - thumb.scrollHeight;
   let offset = multiplier * maxOffset;
   thumb.style.transform = "translateY(" + offset + "px)";
   // console.log(evt);
+};
+ */
+text.parentElement.onmousewheel = function (evt) {
+  evt.preventDefault();
+  text.scrollBy({ top: evt.deltaY, behavior: "smooth" });
+  setTimeout(() => {
+    const multiplier = text.scrollTop / (text.scrollHeight - text.offsetHeight);
+    const maxOffset = track.scrollHeight - thumb.scrollHeight;
+    const offset = multiplier * maxOffset;
+    thumb.style.transform = "translateY(" + offset + "px)";
+  }, 100);
+};
+
+track.onclick = function (evt) {
+  const multiplier = evt.layerY / track.scrollHeight;
+  const maxOffset = track.scrollHeight - thumb.scrollHeight;
+  const offset = multiplier * maxOffset;
+  thumb.style.transform = "translateY(" + offset + "px)";
+  text.scrollTo(0, (text.scrollHeight - text.offsetHeight) * multiplier);
+  console.log(evt);
 };
