@@ -1,10 +1,20 @@
+body{
+  display: flex;
+  justify-content: center;
+  font-family: 'Courgette', cursive;
+  font-family: 'Dancing Script', cursive;
+}
+
 .text {
   width: 80%;
   height: 300px;
-  background-color: antiquewhite;
+  text-align: center;
+  font-size: 1.2em;
   border: 1px solid black;
   overflow: hidden;
   position: relative;
+  background: linear-gradient(30deg, #0199ff, #fff0, #8e44ad, #3498db, #8e44ad, #fff0, #0199ff);
+  color: #fff;
 }
 pre {
   width: 100%;
@@ -14,11 +24,13 @@ pre {
 }
 .scroll-bar {
   position: absolute;
-  right: 0;
+  right: 10px;
   top: 0;
   height: 100%;
   width: 20px;
   cursor: pointer;
+  box-shadow: 0 7px 20px #fff;
+  border-radius: 40px;
 }
 .scroll-thumb {
   width: 14px;
